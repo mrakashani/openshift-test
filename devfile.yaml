@@ -37,10 +37,6 @@ components:
     kubernetes:
       uri: deploy.yaml
       endpoints:
-#        - name: http-8081
-#          targetPort: 8081
-#          path: /
-#          secure: true
         - name: http-443
           targetPort: 443
           path: /
