@@ -16,9 +16,6 @@ spec:
         - name: my-python
           image: python-image:latest
           ports:
-            - name: http
-              containerPort: 8081
-              protocol: TCP
             - name: https
               containerPort: 443
               protocol: TCP
