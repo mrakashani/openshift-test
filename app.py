@@ -1,13 +1,27 @@
 from flask import Flask, jsonify
 
+
+from OpenSSL import SSL
+context = SSL.Context(SSL.PROTOCOL_TLSv1_2)
+context.use_privatekey_file('server.key')
+context.use_certificate_file('server.crt')   
+
+
 app = Flask(__name__)
 
 
-@app.route("/hello", methods=["GET"])
-def say_hello():
-    return jsonify({"msg": "Hello from Flask"})
+@app.route('/')
+def index():
+    return 'Flask is running!'
 
 
-if __name__ == "__main__":
-    # Please do not set debug=True in production
-    app.run(host="0.0.0.0", port=443, debug=True, ssl_context=context)
+@app.route('/data')
+def names():
+    data = {"names": ["John", "Jacob", "Julie", "Jennifer"]}
+    return jsonify(data)
+
+
+#if __name__ == '__main__':
+#    app.run()
+if __name__ == '__main__':  
+     app.run(host='0.0.0.0', debug=True, ssl_context=context)
