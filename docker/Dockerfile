@@ -1,22 +1,17 @@
-FROM quay.io/fedora/python-310
+#FROM quay.io/fedora/python-310
 
-# By default, listen on port 8081
-EXPOSE 443/tcp
-ENV FLASK_PORT=443
+# syntax=docker/dockerfile:1
 
-# Set the working directory in the container
-WORKDIR /projects
+# base python image for custom image
+FROM python:3.9.13-slim-buster
 
-# Copy the content of the local src directory to the working directory
+# create working directory and install pip dependencies
+WORKDIR /hello-py
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+
+# copy python project files from local to /hello-py image working directory
 COPY . .
 
-# Install any dependencies
-RUN \
-  if [ -f requirements.txt ]; \
-    then pip install -r requirements.txt; \
-  elif [ `ls -1q *.txt | wc -l` == 1 ]; \
-    then pip install -r *.txt; \
-  fi
-
-# Specify the command to run on container start
-CMD [ "python", "./app.py" ]
+# run the flask server  
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
