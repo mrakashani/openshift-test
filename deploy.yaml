@@ -34,10 +34,10 @@ metadata:
   name: my-python
 spec:
   ports:
-    - name: http-8081
-      port: 8081
-      protocol: TCP
-      targetPort: 8081
+#    - name: http-8081
+#      port: 8081
+#      protocol: TCP
+#      targetPort: 8081
     - name: https-8081
       port: 443
       protocol: TCP
