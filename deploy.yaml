@@ -34,9 +34,9 @@ metadata:
   name: my-python
 spec:
   ports:
-    - name: https-8081
+    - name: https-443
       port: 443
       protocol: TCP
-      targetPort: 8081
+      targetPort: 443
   selector:
     app: python-app
