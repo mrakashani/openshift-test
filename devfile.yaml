@@ -15,7 +15,9 @@ metadata:
     - Pip
     - Flask
   supportUrl: https://github.com/devfile-samples/devfile-support#support-information
-  rent:
+  attributes:
+    alpha.dockerimage-port: 8081
+parent:
   id: python
   registryUrl: 'https://registry.devfile.io'
 components:
@@ -31,8 +33,19 @@ components:
       deployment/replicas: 1
       deployment/cpuRequest: 10m
       deployment/memoryRequest: 50Mi
+      deployment/container-port: 8081
     kubernetes:
       uri: deploy.yaml
+      endpoints:
+        - name: http-8081
+          targetPort: 8081
+          path: /
+          secure: true
+        - name: http-443
+          targetPort: 443
+          path: /
+          secure: true
+
 commands:
   - id: build-image
     apply:
