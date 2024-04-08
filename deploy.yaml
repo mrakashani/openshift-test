@@ -15,10 +15,6 @@ spec:
       containers:
         - name: my-python
           image: python-image:latest
-          ports:
-            - name: https
-              containerPort: 443
-              protocol: TCP
           resources:
             requests:
               memory: "50Mi"
@@ -29,10 +25,5 @@ apiVersion: v1
 metadata:
   name: my-python
 spec:
-  ports:
-    - name: https-443
-      port: 443
-      protocol: TCP
-      targetPort: 443
   selector:
     app: python-app
