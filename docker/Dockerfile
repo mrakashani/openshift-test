@@ -1,8 +1,8 @@
 FROM quay.io/fedora/python-310
 
 # By default, listen on port 8081
-EXPOSE 8081/tcp
-ENV FLASK_PORT=8081
+EXPOSE 443/tcp
+ENV FLASK_PORT=443
 
 # Set the working directory in the container
 WORKDIR /projects
